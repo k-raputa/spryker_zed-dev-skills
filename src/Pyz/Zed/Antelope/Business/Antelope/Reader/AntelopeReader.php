@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyz\Zed\Antelope\Business\Reader;
+namespace Pyz\Zed\Antelope\Business\Antelope\Reader;
 
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeResponseTransfer;
