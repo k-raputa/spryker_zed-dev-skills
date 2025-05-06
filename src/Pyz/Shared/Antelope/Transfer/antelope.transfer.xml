@@ -14,4 +14,8 @@
         <property name="antelope" type="Antelope"/>
         <property name="isSuccessFul" type="bool"/>
     </transfer>
+    <transfer name="AntelopeLocation">
+        <property name="idAntelopeLocation" type="int"/>
+        <property name="locationName" type="string"/>
+    </transfer>
 </transfers>
