@@ -7,5 +7,24 @@
         <property name="idAntelopeLocation" type="int"/>
         <property name="locationName" type="string"/>
     </transfer>
+    <transfer name="AntelopeLocationCriteria">
+        <property name="idAntelopeLocation" type="int"/>
+        <property name="locationName" type="string"/>
+    </transfer>
 
+    <transfer name="AntelopeLocationResponse">
+        <property name="antelopeLocation" type="AntelopeLocation"/>
+        <property name="isSuccessful" type="bool"/>
+        <property name="errorMessage" type="string"/>
+    </transfer>
+    <transfer name="AntelopeLocationCollectionResponse">
+        <property name="antelopeLocations" type="AntelopeLocation[]"/>
+        <property name="isSuccessful" type="bool"/>
+        <property name="errorMessage" type="string"/>
+    </transfer>
+
+
+    <transfer name="AntelopeLocationCollection">
+        <property name="antelopeLocations" type="AntelopeLocation[]" singular="antelopeLocation"/>
+    </transfer>
 </transfers>

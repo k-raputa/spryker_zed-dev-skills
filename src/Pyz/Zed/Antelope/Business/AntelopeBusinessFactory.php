@@ -37,5 +37,4 @@ class AntelopeBusinessFactory extends AbstractBusinessFactory
         return new AntelopeLocationReader($this->getRepository());
     }
 
-   
 }

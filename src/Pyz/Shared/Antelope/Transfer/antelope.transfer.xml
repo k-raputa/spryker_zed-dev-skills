@@ -6,16 +6,27 @@
     <transfer name="Antelope">
         <property name="idAntelope" type="int"/>
         <property name="name" type="string"/>
+        <property name="fkAntelopeLocation" type="int"/>
+        <property name="antelopeLocation" type="AntelopeLocation"/>
     </transfer>
-    <transfer name="AntelopeCriteria">
-        <property name="name" type="string"/>
+    <transfer name="AntelopeCollection">
+        <property name="antelopes" type="Antelope[]" singular="antelope"/>
+    </transfer>
+    <transfer name="AntelopeCollectionResponse">
+        <property name="antelopes" type="Antelope[]"/>
+        <property name="isSuccessful" type="bool"/>
+        <property name="errorMessage" type="string"/>
     </transfer>
     <transfer name="AntelopeResponse">
         <property name="antelope" type="Antelope"/>
-        <property name="isSuccessFul" type="bool"/>
+        <property name="isSuccessful" type="bool"/>
+        <property name="errorMessage" type="string"/>
     </transfer>
-    <transfer name="AntelopeLocation">
-        <property name="idAntelopeLocation" type="int"/>
-        <property name="locationName" type="string"/>
+    <transfer name="AntelopeCollection">
+        <property name="antelopes" type="Antelope[]" singular="antelope"/>
+    </transfer>
+    <transfer name="AntelopeCriteria">
+        <property name="name" type="string"/>
+        <property name="idAntelope" type="int"/>
     </transfer>
 </transfers>
