@@ -18,7 +18,8 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class AntelopeFacade extends AbstractFacade implements AntelopeFacadeInterface
 {
     public function createAntelope(AntelopeTransfer $antelopeTransfer
-    ): AntelopeTransfer {
+    ): AntelopeTransfer
+    {
         return $this->getFactory()->createAntelopeWriter()->createAntelope($antelopeTransfer);
     }
 
@@ -27,23 +28,27 @@ class AntelopeFacade extends AbstractFacade implements AntelopeFacadeInterface
      */
     public function getAntelopeLocationById(
         int $idLocation
-    ): ?AntelopeLocationResponseTransfer {
+    ): ?AntelopeLocationResponseTransfer
+    {
         return $this->getFactory()->createAntelopeLocationReader()->getAntelopeLocationById($idLocation);
     }
 
     public function getAntelope(
         AntelopeCriteriaTransfer $antelopeCriteriaTransfer
-    ): AntelopeResponseTransfer {
+    ): AntelopeResponseTransfer
+    {
         return $this->getFactory()->createAntelopeReader()->getAntelope($antelopeCriteriaTransfer);
     }
 
     public function createAntelopeLocation(
         AntelopeLocationTransfer $antelopeLocationTransfer
-    ): AntelopeLocationTransfer {
+    ): AntelopeLocationTransfer
+    {
         return $this->getFactory()->createAntelopeLocationWriter()->createAntelopeLocation($antelopeLocationTransfer);
     }
 
-    public function getAntelopeLocationCollection(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer): AntelopeLocationCollectionTransfer
+    public function getAntelopeLocationCollection(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
+    ): AntelopeLocationCollectionTransfer
     {
         return $this->getFactory()->createAntelopeLocationReader()->getAntelopeLocationCollection(
             $antelopeLocationCriteriaTransfer,
@@ -54,5 +59,10 @@ class AntelopeFacade extends AbstractFacade implements AntelopeFacadeInterface
     ): ?AntelopeLocationResponseTransfer
     {
         return $this->getFactory()->createAntelopeLocationReader()->getAntelopeLocation($antelopeCriteriaTransfer);
+    }
+
+    public function getAntelopeLocations(): AntelopeLocationCollectionTransfer
+    {
+        return $this->getFactory()->createAntelopeLocationReader()->getAntelopeLocations();
     }
 }

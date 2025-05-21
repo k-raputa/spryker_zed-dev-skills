@@ -15,6 +15,7 @@ class AntelopeTable extends AbstractTable
 {
     public const string COL_ID_ANTELOPE = PyzAntelopeTableMap::COL_ID_ANTELOPE;
     public const string COL_NAME = PyzAntelopeTableMap::COL_NAME;
+    public const string COL_ANTELOPE_LOCATION_NAME = PyzAntelopeTableMap::COL_FK_ANTELOPE_LOCATION;
 
 
     public function __construct(protected PyzAntelopeQuery $antelopeQuery)
@@ -31,18 +32,21 @@ class AntelopeTable extends AbstractTable
         $config->setHeader([
             static::COL_ID_ANTELOPE => 'Antelope ID',
             static::COL_NAME => 'Name',
+            static::COL_ANTELOPE_LOCATION_NAME => 'Location Name',
 
         ]);
 
         $config->setSortable([
             static::COL_ID_ANTELOPE,
             static::COL_NAME,
+            static::COL_ANTELOPE_LOCATION_NAME,
 
         ]);
 
         $config->setSearchable([
             static::COL_ID_ANTELOPE,
             static::COL_NAME,
+            static::COL_ANTELOPE_LOCATION_NAME,
         ]);
 
         return $config;
@@ -80,7 +84,8 @@ class AntelopeTable extends AbstractTable
         foreach ($antelopeEntityCollection as $antelopeEntity) {
             $returns[] = [
                 static::COL_ID_ANTELOPE => $antelopeEntity->getIdAntelope(),
-                static::COL_NAME => $antelopeEntity->getName()
+                static::COL_NAME => $antelopeEntity->getName(),
+                static::COL_ANTELOPE_LOCATION_NAME => $antelopeEntity->getPyzAntelopeLocation()?->getLocationName()
             ];
         }
 

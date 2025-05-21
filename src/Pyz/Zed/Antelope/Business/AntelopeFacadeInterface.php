@@ -37,4 +37,5 @@ interface AntelopeFacadeInterface
     public function getAntelopeLocationCollection(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
     ): AntelopeLocationCollectionTransfer;
 
+    public function getAntelopeLocations(): AntelopeLocationCollectionTransfer;
 }

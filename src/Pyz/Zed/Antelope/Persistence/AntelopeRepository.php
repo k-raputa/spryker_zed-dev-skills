@@ -35,6 +35,33 @@ class AntelopeRepository extends AbstractRepository implements
             true);
     }
 
+    public function getAntelopeLocation(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
+    ): ?AntelopeLocationTransfer
+    {
+        if ($antelopeLocationCriteriaTransfer->getLocationName() !== null) {
+            return $this->getAntelopeLocationByName($antelopeLocationCriteriaTransfer->getLocationName());
+        }
+
+        if ($antelopeLocationCriteriaTransfer->getIdAntelopeLocation() !== null) {
+            return $this->getAntelopeLocationById($antelopeLocationCriteriaTransfer->getIdAntelopeLocation());
+        }
+
+        return null;
+    }
+
+    private function getAntelopeLocationByName(string $locationName): AntelopeLocationTransfer
+    {
+        $query = $this->getFactory()->createAntelopeLocationQuery();
+        $query->filterByLocationName($locationName);
+
+        $antelopeLocationEntity = $query->findOne();
+        if ($antelopeLocationEntity === null) {
+            throw new EntityNotFoundException('Antelope Location not found');
+        }
+        return (new AntelopeLocationTransfer())->fromArray($antelopeLocationEntity->toArray(),
+            true);
+    }
+
     /**
      * @throws EntityNotFoundException
      */
@@ -51,23 +78,13 @@ class AntelopeRepository extends AbstractRepository implements
             true);
     }
 
-    public function getAntelopeLocation(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
-    ): ?AntelopeLocationTransfer
-    {
-        if ($antelopeLocationCriteriaTransfer->getLocationName() !== null) {
-            return $this->getAntelopeLocationByName($antelopeLocationCriteriaTransfer->getLocationName());
-        }
-
-        if ($antelopeLocationCriteriaTransfer->getIdAntelopeLocation() !== null) {
-            return $this->getAntelopeLocationById($antelopeLocationCriteriaTransfer->getIdAntelopeLocation() );
-        }
-
-        return null;
-    }
-
-    public function getAntelopeLocationCollection(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
+    public function getAntelopeLocationCollection(
+        ?AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer = null
     ): AntelopeLocationCollectionTransfer
     {
+        if (!$antelopeLocationCriteriaTransfer) {
+            $antelopeLocationCriteriaTransfer = new AntelopeLocationCriteriaTransfer();
+        }
 
         $query = $this->getFactory()->createAntelopeLocationQuery();
 
@@ -85,18 +102,5 @@ class AntelopeRepository extends AbstractRepository implements
         return $antelopeLocationMapper->mapAntelopeLocationEntitiesToCollectionTransfer(
             $antelopeLocations,
         );
-    }
-
-    private function getAntelopeLocationByName(string $locationName): AntelopeLocationTransfer
-    {
-        $query = $this->getFactory()->createAntelopeLocationQuery();
-        $query->filterByLocationName($locationName);
-
-        $antelopeLocationEntity = $query->findOne();
-        if ($antelopeLocationEntity === null) {
-            throw new EntityNotFoundException('Antelope Location not found');
-        }
-        return (new AntelopeLocationTransfer())->fromArray($antelopeLocationEntity->toArray(),
-            true);
     }
 }

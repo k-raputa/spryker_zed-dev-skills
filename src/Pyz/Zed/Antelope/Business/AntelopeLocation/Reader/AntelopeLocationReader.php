@@ -40,12 +40,6 @@ class AntelopeLocationReader
         }
     }
 
-    public function getAntelopeLocationCollection(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
-    ): AntelopeLocationCollectionTransfer
-    {
-        return $this->antelopeRepository->getAntelopeLocationCollection($antelopeLocationCriteriaTransfer);
-    }
-
     public function getAntelopeLocation(
         AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
     )
@@ -56,5 +50,16 @@ class AntelopeLocationReader
         $antelopeLocationResponseTransfer->setAntelopeLocation($antelopeLocationTransfer);
         $antelopeLocationResponseTransfer->setIsSuccessFul(true);
         return $antelopeLocationResponseTransfer;
+    }
+
+    public function getAntelopeLocations(): AntelopeLocationCollectionTransfer
+    {
+        return $this->antelopeRepository->getAntelopeLocationCollection();
+    }
+
+    public function getAntelopeLocationCollection(AntelopeLocationCriteriaTransfer $antelopeLocationCriteriaTransfer
+    ): AntelopeLocationCollectionTransfer
+    {
+        return $this->antelopeRepository->getAntelopeLocationCollection($antelopeLocationCriteriaTransfer);
     }
 }
