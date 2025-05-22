@@ -9,8 +9,11 @@ declare(strict_types=1);
 
 namespace Pyz\Zed\Oms;
 
+use Pyz\Zed\Oms\Communication\Plugin\Command\AuthorizePaymentCommand;
 use Pyz\Zed\Oms\Communication\Plugin\Command\Demo\PayCommand;
+use Pyz\Zed\Oms\Communication\Plugin\Command\ShipOrderCommand;
 use Pyz\Zed\Oms\Communication\Plugin\Condition\Demo\IsAuthorizedCondition;
+use Pyz\Zed\Oms\Communication\Plugin\Condition\IsPaymentAuthorizedCondition;
 use Pyz\Zed\Oms\Communication\Plugin\Oms\InitiationTimeoutProcessorPlugin;
 use Spryker\Zed\Availability\Communication\Plugin\Oms\AvailabilityReservationPostSaveTerminationAwareStrategyPlugin;
 use Spryker\Zed\GiftCard\Communication\Plugin\Oms\Command\CreateGiftCardCommandPlugin;
@@ -97,6 +100,8 @@ class OmsDependencyProvider extends SprykerOmsDependencyProvider
                 $commandCollection->add(new SendCancelPaymentMessageCommandPlugin(),
                     'Payment/Cancel');
                 $commandCollection->add(new PayCommand(), 'Demo/Pay');
+                $commandCollection->add(new ShipOrderCommand(), 'ShipOrder');
+                $commandCollection->add(new AuthorizePaymentCommand(), 'AuthorizePayment');
                 return $commandCollection;
             });
 
@@ -122,6 +127,8 @@ class OmsDependencyProvider extends SprykerOmsDependencyProvider
                     'PickingList/isPickingFinished');
                 $conditionCollection->add(new IsAuthorizedCondition(),
                     'Demo/IsAuthorized');
+                $conditionCollection->add(new IsPaymentAuthorizedCondition(),
+                    'IsPaymentAuthorized');
                 return $conditionCollection;
             });
 

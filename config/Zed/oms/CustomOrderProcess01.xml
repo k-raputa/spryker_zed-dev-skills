@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<statemachine
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="spryker:oms-01"
+    xsi:schemaLocation="spryker:oms-01 http://static.spryker.com/oms-01.xsd">
+    <!-- Used as example XML for OMS implementation -->
+
+    <process name="CustomOrderProcess01" main="true">
+        <states>
+            <state name="new"/>
+            <state name="paid"/>
+            <state name="shipped"/>
+            <state name="canceled"/>
+            <state name="closed"/>
+        </states>
+
+        <transitions>
+            <transition condition="IsPaymentAuthorized" happy="true">
+                <source>new</source>
+                <target>paid</target>
+                <event>authorize_payment</event>
+            </transition>
+
+            <transition>
+                <source>new</source>
+                <target>canceled</target>
+                <event>cancel_order</event>
+            </transition>
+
+            <transition happy="true">
+                <source>paid</source>
+                <target>shipped</target>
+                <event>ship_order</event>
+            </transition>
+
+            <transition happy="true">
+                <source>shipped</source>
+                <target>closed</target>
+                <event>confirm</event>
+            </transition>
+        </transitions>
+
+        <events>
+            <event name="authorize_payment" onEnter="true" command="AuthorizePayment"/>
+            <event name="ship_order" manual="true" command="ShipOrder"/>
+            <event name="cancel_order" onEnter="true"/>
+            <event name="confirm" manual="true"/>
+        </events>
+    </process>
+</statemachine>
