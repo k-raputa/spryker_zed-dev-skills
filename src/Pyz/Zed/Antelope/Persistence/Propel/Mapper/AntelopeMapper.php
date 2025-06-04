@@ -8,6 +8,7 @@
 namespace Pyz\Zed\Antelope\Persistence\Propel\Mapper;
 
 use Generated\Shared\Transfer\AntelopeCollectionTransfer;
+use Generated\Shared\Transfer\AntelopeLocationTransfer;
 use Generated\Shared\Transfer\AntelopeTransfer;
 use Orm\Zed\Antelope\Persistence\Base\PyzAntelope;
 use Propel\Runtime\Collection\Collection;
@@ -34,8 +35,18 @@ class AntelopeMapper
         Collection $entityCollection,
     ): AntelopeCollectionTransfer {
         $antelopeCollectionTransfer = new AntelopeCollectionTransfer();
+        /**
+         * @var \Orm\Zed\Antelope\Persistence\Base\PyzAntelope $entity
+         */
+        $locationMapper = new AntelopeLocationMapper();
         foreach ($entityCollection as $entity) {
             $antelopeTransfer = new AntelopeTransfer();
+            $antelopeLocation = $locationMapper->mapAntelopeLocationEntityToTransfer(
+                $entity->getPyzAntelopeLocation(),
+                new AntelopeLocationTransfer(),
+            );
+
+            $antelopeTransfer->setAntelopeLocation($antelopeLocation);
             $antelopeCollectionTransfer->addAntelope($this->mapEntityToAntelopeTransfer($entity, $antelopeTransfer));
         }
 

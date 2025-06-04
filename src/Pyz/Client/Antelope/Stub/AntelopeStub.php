@@ -7,6 +7,7 @@
 
 namespace Pyz\Client\Antelope\Stub;
 
+use Generated\Shared\Transfer\AntelopeCollectionTransfer;
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeResponseTransfer;
 use Spryker\Client\ZedRequest\ZedRequestClientInterface;
@@ -26,6 +27,20 @@ class AntelopeStub
          */
         $antelopeTransfer = $this->zedRequestClient->call(
             '/antelope/gateway/get-antelope',
+            $antelopeCriteriaTransfer,
+        );
+
+        return $antelopeTransfer;
+    }
+
+    public function getAntelopes(
+        AntelopeCriteriaTransfer $antelopeCriteriaTransfer,
+    ): AntelopeCollectionTransfer {
+        /**
+         * @var \Generated\Shared\Transfer\AntelopeCollectionTransfer $antelopeTransfer
+         */
+        $antelopeTransfer = $this->zedRequestClient->call(
+            '/antelope/gateway/get-antelope-collection',
             $antelopeCriteriaTransfer,
         );
 

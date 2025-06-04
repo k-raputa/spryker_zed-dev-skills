@@ -8,6 +8,7 @@
 namespace Pyz\Zed\Antelope\Communication\Controller;
 
 use Faker\Factory as FakerFactory;
+use Generated\Shared\Transfer\AntelopeCollectionTransfer;
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeLocationResponseTransfer;
@@ -65,5 +66,10 @@ class GatewayController extends AbstractGatewayController
         $antelopeLocationTransfer->setLocationName($locationName);
 
         return $this->getFacade()->createAntelopeLocation($antelopeLocationTransfer);
+    }
+    public function getAntelopeCollectionAction(AntelopeCriteriaTransfer $antelopeCriteria): AntelopeCollectionTransfer
+    {
+        return $this->getFacade()
+            ->getAntelopeCollection($antelopeCriteria);
     }
 }

@@ -1,0 +1,25 @@
+{% extends template('page-layout-main') %}
+{% define data = {
+    antelopes: _view.antelopes
+} %}
+
+{% block body %}
+    {% if data.antelopes is not empty %}
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Location</th>
+            </tr>
+        {% for antelope in data.antelopes %}
+            <tr>
+                <td>{{ antelope.idAntelope }}</td>
+                <td>{{ antelope.name }}</td>
+                <td>{% if antelope.antelopeLocation is not null %}{{ antelope.antelopeLocation.locationName }}{% else %}-{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        No antelopes found :(
+    {% endif %}
+{% endblock %}

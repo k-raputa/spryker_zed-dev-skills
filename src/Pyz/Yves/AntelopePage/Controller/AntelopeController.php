@@ -26,4 +26,19 @@ class AntelopeController extends AbstractController
             '@AntelopePage/views/antelope/get.twig'
         );
     }
+
+    public function indexAction(): View
+    {
+        $antelopeCriteriaTransfer = new AntelopeCriteriaTransfer();
+
+        $antelopeResponseTransfer = $this->getFactory()
+            ->getAntelopeClient()
+            ->getAntelopes($antelopeCriteriaTransfer);
+
+        return $this->view(
+            ['antelopes' => $antelopeResponseTransfer->getAntelopes()],
+            [],
+            '@AntelopePage/views/antelope/index.twig'
+        );
+    }
 }

@@ -7,6 +7,7 @@
 
 namespace Pyz\Client\Antelope;
 
+use Generated\Shared\Transfer\AntelopeCollectionTransfer;
 use Generated\Shared\Transfer\AntelopeCriteriaTransfer;
 use Generated\Shared\Transfer\AntelopeResponseTransfer;
 use Spryker\Client\Kernel\AbstractClient;
@@ -20,5 +21,11 @@ class AntelopeClient extends AbstractClient implements AntelopeClientInterface
         AntelopeCriteriaTransfer $antelopeCriteriaTransfer,
     ): AntelopeResponseTransfer {
         return $this->getFactory()->createAntelopeStub()->getAntelope($antelopeCriteriaTransfer);
+    }
+
+    public function getAntelopes(
+        AntelopeCriteriaTransfer $antelopeCriteriaTransfer,
+    ): AntelopeCollectionTransfer {
+        return $this->getFactory()->createAntelopeStub()->getAntelopes($antelopeCriteriaTransfer);
     }
 }
