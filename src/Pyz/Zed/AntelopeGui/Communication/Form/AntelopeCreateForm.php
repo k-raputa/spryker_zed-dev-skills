@@ -1,9 +1,15 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Pyz\Zed\AntelopeGui\Communication\Form;
 
+use Generated\Shared\Transfer\AntelopeTransfer;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -11,24 +17,25 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+/**
+ * @method \Pyz\Zed\AntelopeGui\AntelopeGuiConfig getConfig()
+ * @method \Pyz\Zed\AntelopeGui\Communication\AntelopeGuiCommunicationFactory getFactory()
+ */
 class AntelopeCreateForm extends AbstractType
 {
-    public const FIELD_NAME = 'name';
-    public const FIELD_COLOR = 'color';
-    public const FIELD_LOCATION = 'id_location';
-    public const LOCATION_CHOICES = 'location_choices';
+    public const string FIELD_NAME = 'name';
 
+    public const string FIELD_ID_LOCATION = AntelopeTransfer::FK_ANTELOPE_LOCATION;
+
+    public const string OPTION_LOCATION_CHOICES = 'location_choices';
+
+    /**
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        //parent::configureOptions($resolver);
-        $resolver->setDefined([
-            static::LOCATION_CHOICES,
-
-        ]);
-        $resolver->setRequired([
-            static::LOCATION_CHOICES,
-
-        ]);
+        parent::configureOptions($resolver);
+        $resolver->setRequired(static::OPTION_LOCATION_CHOICES);
     }
 
     public function getBlockPrefix(): string
@@ -36,42 +43,24 @@ class AntelopeCreateForm extends AbstractType
         return 'antelope';
     }
 
+    /**
+     * @return void
+     */
     public function buildForm(
         FormBuilderInterface $builder,
-        array $options
+        array $options,
     ): void {
-        $this->addNameField($builder)
-            ->addColorField($builder)->addLocationField($builder, $options);
+        $this->addNameField($builder)->addIdLocationField($builder, $options);
     }
 
-    protected function addLocationField(
-        FormBuilderInterface $builder,
-        array $options
-    ): static {
-        $builder->add(static::FIELD_LOCATION, ChoiceType::class,
-            [
-                'label' => 'Location',
-                'placeholder' => 'Choose a location',
-                'choices' => array_flip($options[static::LOCATION_CHOICES]),
-
-                'constraints' => [
-                    $this->createNotBlankConstraint(),
-                ],
-            ]);
-
-        return $this;
-    }
-
-    protected function createNotBlankConstraint(): NotBlank
+    protected function addIdLocationField(FormBuilderInterface $builder, array $options): static
     {
-        return new NotBlank();
-    }
-
-    protected function addColorField(FormBuilderInterface $builder
-    ): static {
-        $builder->add(static::FIELD_COLOR, TextType::class, [
+        $builder->add(static::FIELD_ID_LOCATION, ChoiceType::class, [
+            'label' => 'Location',
+            'required' => true,
+            'choices' => $options[static::OPTION_LOCATION_CHOICES],
             'constraints' => [
-                $this->createNotBlankConstraint(),
+                new NotBlank(),
             ],
         ]);
 
@@ -88,5 +77,10 @@ class AntelopeCreateForm extends AbstractType
         ]);
 
         return $this;
+    }
+
+    protected function createNotBlankConstraint(): NotBlank
+    {
+        return new NotBlank();
     }
 }

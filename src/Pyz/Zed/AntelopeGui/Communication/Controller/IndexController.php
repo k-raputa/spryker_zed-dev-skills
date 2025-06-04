@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Pyz\Zed\AntelopeGui\Communication\Controller;
@@ -13,7 +18,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class IndexController extends AbstractController
 {
     /**
-     * @return array<string,mixed>
+     * @return array<string, mixed>
      */
     public function indexAction(): array
     {
