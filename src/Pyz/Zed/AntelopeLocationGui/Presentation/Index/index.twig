@@ -1,14 +1,21 @@
 {% extends '@Gui/Layout/layout.twig' %}
 
-{% set widget_title = 'Antelope Locations' | trans %}
-
-{% block head_title widget_title | trans %}
-{% block section_title widget_title | trans %}
+{% set widget_title = 'Antelope Locations' %}
+{% block section_title %}{{ widget_title | trans }}{% endblock %}
 
 {% block action %}
-    {{ createActionButton('/antelope-location-gui/create', 'Create Antelope Location' | trans) }}
+    {{ createActionButton(createUrl, 'Create Antelope Location' | trans) }}
 {% endblock %}
 
 {% block content %}
-    {{ antelopeLocationTable | raw }}
+
+    {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Antelope Locations' | trans } %}
+
+        {% block widget_content %}
+            {{ table | raw }}
+        {% endblock %}
+
+    {% endembed %}
+
 {% endblock %}
+

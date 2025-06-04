@@ -1,63 +1,60 @@
 <?php
 
+/**
+ * This file is part of the Spryker Commerce OS.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Pyz\Zed\AntelopeLocationGui;
 
-use Orm\Zed\AntelopeLocation\Persistence\PyzAntelopeLocationQuery;
+use Orm\Zed\Antelope\Persistence\PyzAntelopeLocationQuery;
+use Pyz\Zed\Antelope\Business\AntelopeFacadeInterface;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 
-/**
- * @method \Pyz\Zed\AntelopeLocationGui\AntelopeLocationGuiConfig getConfig()
- */
-class AntelopeLocationGuiDependencyProvider extends
-    AbstractBundleDependencyProvider
+class AntelopeLocationGuiDependencyProvider extends AbstractBundleDependencyProvider
 {
-    public const QUERY_ANTELOPE_LOCATION = 'QUERY_ANTELOPE_LOCATION';
-    public const FACADE_ANTELOPE = 'FACADE_ANTELOPE';
+    /**
+     * @var string
+     */
+    public const string FACADE_ANTELOPE = 'FACADE_ANTELOPE';
 
     /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
+     * @var string
      */
-    public function provideCommunicationLayerDependencies(Container $container
-    ): Container {
-        $container = $this->addAntelopeLocationQuery($container);
-        $container = $this->addAntelopeLocationFacade($container);
+    public const string QUERY_ANTELOPE_LOCATION = 'QUERY_ANTELOPE_LOCATION';
 
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
-    protected function addAntelopeLocationQuery(Container $container): Container
+    public function provideCommunicationLayerDependencies(Container $container): Container
     {
-        $container->set(static::QUERY_ANTELOPE_LOCATION,
-            $container->factory(function () {
-                return PyzAntelopeLocationQuery::create();
-            }));
+        $container = parent::provideCommunicationLayerDependencies($container);
+
+        $this->addAntelopeFacade($container);
+        $this->addAntelopeLocationQuery($container);
 
         return $container;
     }
 
     /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
+     * @return void
      */
-    protected function addAntelopeLocationFacade(Container $container
-    ): Container {
-        $container->set(static::FACADE_ANTELOPE, function (
-            Container $container
-        ) {
-            return $container->getLocator()->antelope()->facade();
-        });
+    private function addAntelopeFacade(Container $container): void
+    {
+        $container->set(
+            static::FACADE_ANTELOPE,
+            static fn (Container $container): AntelopeFacadeInterface => $container->getLocator()->antelope()->facade(),
+        );
+    }
 
-        return $container;
+    /**
+     * @return void
+     */
+    private function addAntelopeLocationQuery(Container $container): void
+    {
+        $container->set(
+            static::QUERY_ANTELOPE_LOCATION,
+            static fn (): PyzAntelopeLocationQuery => new PyzAntelopeLocationQuery(),
+        );
     }
 }

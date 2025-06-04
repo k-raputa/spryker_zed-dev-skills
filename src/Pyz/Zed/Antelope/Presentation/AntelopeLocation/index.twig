@@ -1,0 +1,22 @@
+{% extends '@Gui/Layout/layout.twig' %}
+{% block content %}
+    <h1>Antelopes location</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for location in antelopes %}
+            <tr>
+                <th scope="row">{{ location.idLocation }}</th>
+                <td>{{ location.locationName }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}

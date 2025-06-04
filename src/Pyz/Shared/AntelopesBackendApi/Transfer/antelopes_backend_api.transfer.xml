@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<transfers>
+    <transfer name="AntelopesBackendApiAttributes" strict="true">
+        <property name="idAntelope" type="int"/>
+        <property name="name" type="string"/>
+        <property name="idAntelopeLocation" type="int"/>
+
+    </transfer>
+
+    <transfer name="AntelopeLocationsBackendApiAttributes" strict="true">
+        <property name="idAntelopeLocation" type="int"/>
+        <property name="locationName" type="string"/>
+
+    </transfer>
+</transfers>
