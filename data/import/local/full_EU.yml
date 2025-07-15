@@ -209,3 +209,5 @@ actions:
         source: data/import/common/common/mime_type.csv
     -   data_entity: antelope
         source: data/import/local/common/antelope.csv
+    -   data_entity: antelope_location
+        source: data/import/local/common/antelope_location.csv

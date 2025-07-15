@@ -10,6 +10,8 @@
         <column name="id_antelope_location" required="true" type="INTEGER"
                 primaryKey="true" autoIncrement="true"/>
         <column name="location_name" required="true" type="VARCHAR" size="120"/>
+        <column name="latitude" required="true" type="VARCHAR" size="120"/>
+        <column name="longitude" required="true" type="VARCHAR" size="120"/>
         <unique name="pyz_antelope_location_name">
             <unique-column name="location_name"/>
         </unique>
