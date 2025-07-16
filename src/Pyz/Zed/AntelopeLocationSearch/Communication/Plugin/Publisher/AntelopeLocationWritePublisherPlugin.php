@@ -1,6 +1,6 @@
 <?php
 
-namespace Pyz\Zed\AntelopeSearch\Communication\Plugin\Publisher;
+namespace Pyz\Zed\AntelopeLocationSearch\Communication\Plugin\Publisher;
 
 use Pyz\Shared\AntelopeLocationSearch\AntelopeLocationSearchConfig;
 use Spryker\Zed\Kernel\Communication\AbstractPlugin;

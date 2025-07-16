@@ -8,7 +8,7 @@
 namespace Pyz\Zed\Publisher;
 
 use Pyz\Shared\AntelopeLocationSearch\AntelopeLocationSearchConfig;
-use Pyz\Zed\AntelopeSearch\Communication\Plugin\Publisher\AntelopeLocationWritePublisherPlugin;
+use Pyz\Zed\AntelopeLocationSearch\Communication\Plugin\Publisher\AntelopeLocationWritePublisherPlugin;
 use Spryker\Shared\GlossaryStorage\GlossaryStorageConfig;
 use Spryker\Shared\PublishAndSynchronizeHealthCheck\PublishAndSynchronizeHealthCheckConfig;
 use Spryker\Zed\AssetStorage\Communication\Plugin\Publisher\Asset\AssetDeletePublisherPlugin;

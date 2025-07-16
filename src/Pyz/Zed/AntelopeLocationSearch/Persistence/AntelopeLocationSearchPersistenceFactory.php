@@ -2,7 +2,7 @@
 
 namespace Pyz\Zed\AntelopeLocationSearch\Persistence;
 
-use Orm\Zed\Antelope\Persistence\PyzAntelopeLocationQuery;
+use Orm\Zed\AntelopeLocation\Persistence\PyzAntelopeLocationQuery;
 use Orm\Zed\AntelopeLocationSearch\Persistence\PyzAntelopeLocationSearchQuery;
 use Pyz\Zed\AntelopeLocationSearch\AntelopeLocationSearchDependencyProvider;
 use Pyz\Zed\AntelopeLocationSearch\Persistence\Propel\AntelopeLocationSearch\Mapper\AntelopeLocationSearchMapper;
@@ -31,7 +31,7 @@ class AntelopeLocationSearchPersistenceFactory extends AbstractPersistenceFactor
     }
 
     /**
-     * @return \Orm\Zed\Antelope\Persistence\PyzAntelopeLocationQuery
+     * @return \Orm\Zed\AntelopeLocation\Persistence\PyzAntelopeLocationQuery
      */
     public function getAntelopeLocationPropelQuery(): PyzAntelopeLocationQuery
     {
