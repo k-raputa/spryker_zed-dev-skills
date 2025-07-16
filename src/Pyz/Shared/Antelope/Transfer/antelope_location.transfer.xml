@@ -8,4 +8,11 @@
         <property name="locationName" type="string"/>
     </transfer>
 
+    <transfer name="AntelopeLocationCriteria">
+        <property name="idsAntelopeLocation" singular="idAntelopeLocation" type="array"/>
+    </transfer>
+
+    <transfer name="AntelopeLocationSearchCriteria">
+        <property name="fksAntelopeLocation" singular="fkAntelopeLocation" type="array"/>
+    </transfer>
 </transfers>

@@ -47,7 +47,7 @@ class AntelopeLocationSearchWriter
     {
         $antelopeIds = $this->eventBehaviorFacade->getEventTransferIds($eventTransfers);
 
-        $this->writeCollectionByAntelopeIds($antelopeIds);
+        $this->writeCollectionByAntelopeLocationIds($antelopeIds);
     }
 
     protected function writeCollectionByAntelopeLocationIds(array $antelopeLocationIds): void
